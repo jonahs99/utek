@@ -1,4 +1,5 @@
 import math
+import re
 
 path_in = './competition-package/ptb.train.txt'
 path_cache = './ngram_counts.txt'
@@ -22,7 +23,7 @@ def _parse_ngrams():
             if token == '<unk>' or token == 'N':
                 continue
             upper = token.upper()
-            upper = upper.replaceAll('[^a-zA-Z]', '');
+            upper = re.sub('[^a-zA-Z]', '', upper);
             for ngram in _string_ngrams(upper):
                 if ngram in ngrams:
                     ngrams[ngram] += 1
