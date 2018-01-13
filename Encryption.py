@@ -32,3 +32,9 @@ def block_step(string, shifts):
         
     return ans
 
+def permutation(string, mapping):
+    Dict = {}
+    for i in range(26):
+        Dict[ letter(i) ] = mapping[i]
+    return ''.join((i if non_alphabetic(i) else Dict[i]) for i in string)
+
