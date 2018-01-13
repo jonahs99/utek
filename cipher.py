@@ -31,13 +31,13 @@ def Pr(s):
             b_cnt = 0
             
         Lambda_idx = j + N - length
-        #print('using Lambda', Lambda[Lambda_idx])
+        print('using Lambda', Lambda[Lambda_idx])
         
         if (a_cnt != 0):
             prob += Lambda[Lambda_idx] * b_cnt / a_cnt
-            #print(b, a, b_cnt, a_cnt, 
-            #      Lambda[Lambda_idx] * b_cnt / a_cnt, 
-            #      prob)
+            print(b, a, b_cnt, a_cnt, 
+                  Lambda[Lambda_idx] * b_cnt / a_cnt, 
+                  prob)
         
     return prob
     
@@ -47,13 +47,16 @@ def score(sentence):
     length = len(sentence)
     _score  = 0.0
     
-    for i in range(max(length - N + 1, 0)):
-        #print(sentence[i : i + N])
+    neg_inf = -100.0
+    
+    for i in range( max(length - N + 1, 0) ):
+        print(sentence[i : i + N])
         k = Pr( sentence[i : i + N] )
         if (k != 0.0):
             _score += log(k)
-            #print(sentence[i : i + N], ':', log(k))
-            #print()
+            print(sentence[i : i + N], ':', log(k), '\n')
+        else:
+            _score += neg_inf
     
     return _score
     
