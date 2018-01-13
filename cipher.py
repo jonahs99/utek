@@ -14,7 +14,7 @@ ngrams = clean.ngram_count()
 N = 7
 
 def Pr(s):
-    Lambda = [1e-6, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 0.888889]
+    Lambda = [1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 0.888889]
     prob = 0.0
     length = len(s)
     
