@@ -15,23 +15,30 @@ def _string_ngrams(string):
         for end in range(start + 1, min(start + 7, len(string))):
             yield string[start:end]
 
+def _starting_ngrams(string):
+    for end in range(7):
+        yield string[0:end]
+
 def _parse_ngrams():
     ngrams = {}
     count = 0
     with open(path_in) as file:
+        buffer = ''
         for token in _read_by_tokens(file):
             if token == '<unk>' or token == 'N':
                 continue
-            upper = token.upper()
-            upper = re.sub('[^a-zA-Z]', '', upper);
-            for ngram in _string_ngrams(upper):
-                if ngram in ngrams:
-                    ngrams[ngram] += 1
-                else:
-                    ngrams[ngram] = 1
-                    count += 1
-                    if count % 1000000 == 0:
-                        print('unique ngrams:', count)
+            token = token.upper()
+            token = re.sub('[^a-zA-Z]', '', token);
+            buffer += token
+
+            while(len(buffer)) >= 7:
+                for ngram in _string_ngrams(token):
+                    if ngram in ngrams:
+                        ngrams[ngram] += 1
+                    else:
+                        ngrams[ngram] = 1
+                buffer = buffer[1:]
+
         return ngrams
     return None
 
@@ -59,3 +66,5 @@ def ngram_count():
         ngrams = _parse_ngrams()
         _cache_ngrams(ngrams)
         return ngrams
+
+ngram_count()
