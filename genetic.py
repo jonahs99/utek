@@ -4,7 +4,7 @@ class Chromosome:
     def __init__(self, string):
         self.string = string
     def fitness(self):
-        return 0
+        pass
     def mutate(self):
         a = random.randint(0, len(self.string) - 1)
         b = random.randint(0, len(self.string) - 1)

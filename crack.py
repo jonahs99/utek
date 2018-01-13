@@ -1,0 +1,4 @@
+import Encryption
+
+class GenChromo:
+    

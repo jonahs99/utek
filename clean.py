@@ -2,6 +2,7 @@ import math
 import re
 
 path_in = './competition-package/ptb.train.txt'
+#path_in = './test_ngrams.txt'
 path_cache = './ngram_counts.txt'
 
 # https://stackoverflow.com/questions/16402525/python-read-whitespace-separated-strings-from-file-similar-to-readline
@@ -10,14 +11,14 @@ def _read_by_tokens(fileobj):
         for token in line.split():
             yield token
 
-def _string_ngrams(string):
-    for start in range(len(string)):
-        for end in range(start + 1, min(start + 7, len(string))):
-            yield string[start:end]
+#def _string_ngrams(string):
+#    for start in range(len(string)):
+#        for end in range(start + 1, min(start + 7, len(string))):
+#            yield string[start:end]
 
 def _starting_ngrams(string):
     for end in range(7):
-        yield string[0:end]
+        yield string[0:1+end]
 
 def _parse_ngrams():
     ngrams = {}
@@ -32,7 +33,7 @@ def _parse_ngrams():
             buffer += token
 
             while(len(buffer)) >= 7:
-                for ngram in _string_ngrams(token):
+                for ngram in _starting_ngrams(token):
                     if ngram in ngrams:
                         ngrams[ngram] += 1
                     else:
