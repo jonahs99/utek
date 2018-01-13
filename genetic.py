@@ -1,20 +1,22 @@
 import random
 
+'''def mutate(self):
+    a = random.randint(0, len(self.string) - 1)
+    b = random.randint(0, len(self.string) - 1)
+
+    lstr = list(self.string)
+    lstr[a] = self.string[b]
+    lstr[b] = self.string[a]
+
+    offspring = Chromosome(''.join(lstr))
+    return offspring
+'''
 class Chromosome:
     def __init__(self, string):
         self.string = string
     def fitness(self):
         pass
-    def mutate(self):
-        a = random.randint(0, len(self.string) - 1)
-        b = random.randint(0, len(self.string) - 1)
-
-        lstr = list(self.string)
-        lstr[a] = self.string[b]
-        lstr[b] = self.string[a]
-
-        offspring = Chromosome(''.join(lstr))
-        return offspring
+    
     def __repr__(self):
         return self.string
 
@@ -37,6 +39,4 @@ class Trainer:
         
         self.pool = winners + offspring
 
-trainer = Trainer(10, lambda: Chromosome("12345678"))
-trainer.iterate()
-print(trainer.pool)
+        return winners[-1]
