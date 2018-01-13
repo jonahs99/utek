@@ -56,5 +56,3 @@ def ngram_count():
     ngrams = parse_ngrams()
     cache_ngrams(ngrams)
     return ngrams
-
-ngram_count()
