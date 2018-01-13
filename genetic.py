@@ -12,20 +12,19 @@ import random
     return offspring
 '''
 class Chromosome:
-    def __init__(self, string):
-        self.string = string
+    def __init__(self,):
+        pass
     def fitness(self):
         pass
-    
-    def __repr__(self):
-        return self.string
+    def mutate(self):
+        pass
 
 class Trainer:
     def __init__(self, pool_size, construct):
         self.pool_size = pool_size
         self.pool = [ construct() for i in range(self.pool_size) ]
 
-        self.cuttoff_ratio = 0.8
+        self.cuttoff_ratio = 0.5
 
     def iterate(self):
         scored = sorted([ (chromo, chromo.fitness()) for chromo in self.pool ], key = lambda p: p[1])
@@ -38,4 +37,4 @@ class Trainer:
         
         self.pool = winners + offspring
 
-        return scored
+        return scored[-1][0]
