@@ -1,8 +1,7 @@
 import math
 import re
 
-path_in = './competition-package/ptb.train.txt'
-#path_in = './mobydick.txt'
+path_in = ['./competition-package/ptb.train.txt', './mobydick.txt']
 path_cache = './ngram_counts.txt'
 
 # https://stackoverflow.com/questions/16402525/python-read-whitespace-separated-strings-from-file-similar-to-readline

@@ -4,6 +4,8 @@ import clean
 from math import log
 import re
 
+import random
+
 ngrams = clean.ngram_count()
 # return a dictionary 
 # the keys are the ngrams
@@ -47,7 +49,7 @@ def score(sentence):
     length = len(sentence)
     _score  = 0.0
     
-    neg_inf = -100.0
+    neg_inf = - random.randint(100, 200)
     
     for i in range( max(length - N + 1, 0) ):
         #print(sentence[i : i + N])
