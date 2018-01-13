@@ -19,9 +19,10 @@ def _parse_ngrams():
     count = 0
     with open(path_in) as file:
         for token in _read_by_tokens(file):
-            if token == "<unk>" or token == "N":
+            if token == '<unk>' or token == 'N':
                 continue
             upper = token.upper()
+            upper = upper.replaceAll('[^a-zA-Z]', '');
             for ngram in _string_ngrams(upper):
                 if ngram in ngrams:
                     ngrams[ngram] += 1
