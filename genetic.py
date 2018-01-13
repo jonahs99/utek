@@ -25,8 +25,7 @@ class Trainer:
         self.pool_size = pool_size
         self.pool = [ construct() for i in range(self.pool_size) ]
 
-        self.cuttoff_ratio = 0.5
-        self.mutation_rate = 0.02
+        self.cuttoff_ratio = 0.8
 
     def iterate(self):
         scored = sorted([ (chromo, chromo.fitness()) for chromo in self.pool ], key = lambda p: p[1])
@@ -39,4 +38,4 @@ class Trainer:
         
         self.pool = winners + offspring
 
-        return winners[-1]
+        return scored

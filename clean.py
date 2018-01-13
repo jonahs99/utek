@@ -23,25 +23,24 @@ def _starting_ngrams(string):
 def _parse_ngrams():
     ngrams = {}
     count = 0
-    with open(path_in) as file:
-        buffer = ''
-        for token in _read_by_tokens(file):
-            if token == '<unk>' or token == 'N':
-                continue
-            token = token.upper()
-            token = re.sub('[^a-zA-Z]', '', token);
-            buffer += token
+    for path in path_in:
+        with open(path_in) as file:
+            buffer = ''
+            for token in _read_by_tokens(file):
+                if token == '<unk>' or token == 'N':
+                    continue
+                token = token.upper()
+                token = re.sub('[^a-zA-Z]', '', token);
+                buffer += token
 
-            while(len(buffer)) >= 7:
-                for ngram in _starting_ngrams(token):
-                    if ngram in ngrams:
-                        ngrams[ngram] += 1
-                    else:
-                        ngrams[ngram] = 1
-                buffer = buffer[1:]
-
-        return ngrams
-    return None
+                while(len(buffer)) >= 7:
+                    for ngram in _starting_ngrams(token):
+                        if ngram in ngrams:
+                            ngrams[ngram] += 1
+                        else:
+                            ngrams[ngram] = 1
+                    buffer = buffer[1:]
+    return ngrams
 
 def _cache_ngrams(ngrams):
     with open(path_cache, 'w') as file:
